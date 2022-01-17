@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: db
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: db
+      name: db
+    spec:
+      containers:
+      - image: ramonastefan/movies-app-db:latest
+        name: db
+        envFrom:
+          - secretRef:
+              name: db-secret
+        volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: pd
+
+      volumes:
+      - name: pd
+        persistentVolumeClaim:
+          claimName: persistent-volume-claim
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always

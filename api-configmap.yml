@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  AMQPURL: amqp://rabbitmq-cluster-ip-service
+  PGPORT: "5432"
+  PGHOST: db-cluster-ip-service
+  PORT: "8000"
+kind: ConfigMap
+metadata:
+  name: api-cmap

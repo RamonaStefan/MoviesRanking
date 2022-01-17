@@ -1,0 +1,25 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Api for Kubernetes Project - Movies Ranking App",
+  "main": "start.js",
+  "scripts": {
+    "start-local": "nodemon ./Web/start.js",
+    "start": "node ./Web/start.js"
+  },
+  "author": "Ramona Stefan",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.8.0",
+    "csv": "^6.0.4",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "log-timestamp": "^0.3.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.1",
+    "fs": "0.0.1-security",
+    "csv-parser": "3.0.0"
+  }
+}

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: visualizer-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: visualizer
+  template:
+    metadata:
+      labels:
+        run: visualizer
+      name: visualizer
+    spec:
+      containers:
+      - image: portainer/portainer-ce
+        name: visualizer
+        ports:
+          - containerPort: 9000
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always

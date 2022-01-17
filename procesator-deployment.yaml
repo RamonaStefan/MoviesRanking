@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: procesator-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: procesator
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: procesator
+      name: procesator
+    spec:
+      containers:
+      - image: ramonastefan/movies-app-procesator:latest
+        name: procesator
+        resources: {}
+        envFrom:
+          - secretRef:
+              name: proc-secret
+          - configMapRef:
+              name: proc-cmap
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always

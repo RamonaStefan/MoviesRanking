@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: api
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: api
+      name: api
+    spec:
+      containers:
+      - image: ramonastefan/movies-app-api:latest
+        name: api
+        resources: {}
+        envFrom:
+          - secretRef:
+              name: proc-secret
+          - configMapRef:
+              name: api-cmap
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always

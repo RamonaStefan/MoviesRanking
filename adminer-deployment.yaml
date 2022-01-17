@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adminer-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: adminer
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: adminer
+      name: adminer
+    spec:
+      containers:
+      - image: adminer
+        name: adminer
+        ports:
+          - containerPort: 8080
+        envFrom:
+          - secretRef:
+              name: db-secret
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
